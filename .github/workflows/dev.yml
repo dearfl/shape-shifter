@@ -4,6 +4,14 @@ on:
   pull_request:
     branches:
       - main
+    paths-ignore:
+      - '.envrc'
+      - '.gitignore'
+      - 'flake.*'
+      - 'LICENSE'
+      - 'README.md'
+      - 'assets/**'
+      - 'wasm/**'
 
 env:
   CARGO_TERM_COLOR: always
@@ -24,6 +32,8 @@ jobs:
 
     - name: Install Dependencies
       run: sudo apt-get update; sudo apt-get install --no-install-recommends libasound2-dev libudev-dev libwayland-dev
+
+    - uses: rui314/setup-mold@v1
 
     - name: Setup Rust Toolchain
       uses: hecrj/setup-rust-action@v2
