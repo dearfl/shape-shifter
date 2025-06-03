@@ -39,6 +39,7 @@ impl Plugin for GamePlugin {
         app.add_plugins(DefaultPlugins.set(WindowPlugin {
             primary_window: Some(Window {
                 // fullscreen request is ignored on hyprland
+                #[cfg(not(target_family = "wasm"))]
                 mode: bevy::window::WindowMode::Fullscreen(
                     MonitorSelection::Index(0), // Current/Primary crashes on wayland in 0.16.0
                     VideoModeSelection::Current,
