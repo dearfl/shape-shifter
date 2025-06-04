@@ -56,10 +56,14 @@ impl Plugin for GamePlugin {
         }));
 
         #[cfg(feature = "inspect")]
-        app.add_plugins(bevy_inspector_egui::bevy_egui::EguiPlugin {
-            enable_multipass_for_primary_context: true,
-        })
-        .add_plugins(bevy_inspector_egui::quick::WorldInspectorPlugin::new());
+        app.add_plugins((
+            bevy_screen_diagnostics::ScreenFrameDiagnosticsPlugin,
+            bevy_screen_diagnostics::ScreenDiagnosticsPlugin::default(),
+            bevy_inspector_egui::bevy_egui::EguiPlugin {
+                enable_multipass_for_primary_context: true,
+            },
+            bevy_inspector_egui::quick::WorldInspectorPlugin::new(),
+        ));
 
         app.init_state::<GameState>()
             .add_sub_state::<GamePhase>()
