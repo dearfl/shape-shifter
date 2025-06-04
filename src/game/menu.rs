@@ -115,7 +115,7 @@ fn setup(mut command: Commands, resources: Res<MenuResources>) {
     let node_root = (Menu, resources.node_root.clone());
     let title = resources.title("Shape Shifter");
     let button_new_game = resources.button(NewGameButton, "New Game");
-    let button_settings = resources.button(SettingsButton, "Settings");
+    // let button_settings = resources.button(SettingsButton, "Settings");
     let button_exit = resources.button(ExitButton, "Exit");
 
     fn spawn_button<E: 'static + Event, B: Bundle, M>(
@@ -151,7 +151,8 @@ fn setup(mut command: Commands, resources: Res<MenuResources>) {
                     // these buttons should have up/down relations for gamepads to work
                     spawn_button(parent, button_new_game, transition(GameState::Ingame));
                     // sometimes here need a resume
-                    spawn_button(parent, button_settings, transition(GameState::Settings));
+                    // comment out settings for now
+                    // spawn_button(parent, button_settings, transition(GameState::Settings));
                     spawn_button(parent, button_exit, transition(GameState::Exit));
                 })),
             ),

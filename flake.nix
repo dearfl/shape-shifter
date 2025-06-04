@@ -59,7 +59,7 @@
       {
         devShell = pkgs.mkShell rec {
           nativeBuildInputs = nativeDeps ++ linker;
-          buildInputs = [ rust ] ++ deps;
+          buildInputs = [ rust pkgs.wasm-bindgen-cli ] ++ deps;
           # xkbcommon use dlopen to load, so we need this envvar in dev shell
           LD_LIBRARY_PATH = pkgs.lib.makeLibraryPath buildInputs;
         };

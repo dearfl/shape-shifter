@@ -39,6 +39,7 @@ impl Plugin for GamePlugin {
         app.add_plugins(DefaultPlugins.set(WindowPlugin {
             primary_window: Some(Window {
                 // fullscreen request is ignored on hyprland
+                #[cfg(not(target_family = "wasm"))]
                 mode: bevy::window::WindowMode::Fullscreen(
                     MonitorSelection::Index(0), // Current/Primary crashes on wayland in 0.16.0
                     VideoModeSelection::Current,
@@ -55,10 +56,14 @@ impl Plugin for GamePlugin {
         }));
 
         #[cfg(feature = "inspect")]
-        app.add_plugins(bevy_inspector_egui::bevy_egui::EguiPlugin {
-            enable_multipass_for_primary_context: true,
-        })
-        .add_plugins(bevy_inspector_egui::quick::WorldInspectorPlugin::new());
+        app.add_plugins((
+            bevy_screen_diagnostics::ScreenFrameDiagnosticsPlugin,
+            bevy_screen_diagnostics::ScreenDiagnosticsPlugin::default(),
+            bevy_inspector_egui::bevy_egui::EguiPlugin {
+                enable_multipass_for_primary_context: true,
+            },
+            bevy_inspector_egui::quick::WorldInspectorPlugin::new(),
+        ));
 
         app.init_state::<GameState>()
             .add_sub_state::<GamePhase>()
