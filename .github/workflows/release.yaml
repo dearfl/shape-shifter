@@ -25,7 +25,7 @@ jobs:
     steps:
       - uses: olegtarasov/get-tag@v2.1.4
         id: get_version
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           lfs: ${{ env.use_git_lfs }}
       - uses: rui314/setup-mold@v1
@@ -74,7 +74,7 @@ jobs:
     steps:
       - uses: olegtarasov/get-tag@v2.1.4
         id: get_version
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           lfs: ${{ env.use_git_lfs }}
       - uses: rui314/setup-mold@v1
@@ -124,7 +124,7 @@ jobs:
     steps:
       - uses: olegtarasov/get-tag@v2.1.4
         id: get_version
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           lfs: ${{ env.use_git_lfs }}
       - uses: dtolnay/rust-toolchain@stable
@@ -170,7 +170,7 @@ jobs:
     steps:
       - uses: olegtarasov/get-tag@v2.1.4
         id: get_version
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           lfs: ${{ env.use_git_lfs }}
       - uses: dtolnay/rust-toolchain@stable
@@ -216,7 +216,7 @@ jobs:
     steps:
       - uses: olegtarasov/get-tag@v2.1.4
         id: get_version
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
         with:
           lfs: ${{ env.use_git_lfs }}
       - uses: dtolnay/rust-toolchain@stable
